@@ -64,7 +64,7 @@ class World extends EventEmitter {
       const position = new Vec3(pos.x, pos.y, pos.z)
       const block = await this.getBlock(position)
       if (block && (!matcher || matcher(block))) {
-        const intersect = iter.intersect(block.shapes, position)
+        const intersect = iter.intersect([...block.shapes, ...block.interactionShapes ?? []], position)
         if (intersect) {
           block.face = intersect.face
           block.intersect = intersect.pos

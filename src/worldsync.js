@@ -49,7 +49,7 @@ class WorldSync extends EventEmitter {
             return block
           }
         } else {
-          const intersect = iter.intersect(block.shapes, position)
+          const intersect = iter.intersect([...block.shapes, ...block.interactionShapes ?? []], position)
           if (intersect) {
             block.face = intersect.face
             block.intersect = intersect.pos
